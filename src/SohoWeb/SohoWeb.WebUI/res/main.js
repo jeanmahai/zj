@@ -130,7 +130,7 @@
     require.config({
         baseUrl: "../../ScriptController",
         paths: {
-            'angular': '../bower_components/angular/angular.min',
+            'angular': '../res/lib/angular.min',
             'angular-route': '../res/lib/angular-route.min',
             'angularAMD': '../res/lib/angularAMD.min',
             'angular-cookies': '../res/lib/angular-cookies.min',
@@ -157,7 +157,7 @@
             "angular-date": {
                 deps: ["angular", "jquery-ui"],
                 init: function (a, b, c) {
-                    loadCss("bower_components/jquery-ui/themes/ui-darkness/jquery-ui.min.css");
+                    loadCss("res/lib/jquery-ui.min.css");
                 }
             },
             'app': {

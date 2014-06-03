@@ -147,6 +147,7 @@
     <Content Include="res\lib\angularAMD.min.js" />
     <Content Include="res\lib\date.js" />
     <Content Include="res\lib\jquery-ui.js" />
+    <Content Include="res\lib\jquery-ui.min.css" />
     <Content Include="res\lib\jquery-ui.min.js" />
     <Content Include="res\lib\jquery.js" />
     <Content Include="res\lib\jquery.min.js" />

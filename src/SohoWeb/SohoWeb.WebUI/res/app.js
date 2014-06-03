@@ -1,29 +1,33 @@
 /**
  * Created by Jeanma on 14-5-5.
  */
+/*
+
+ */
 define(window["appConfig"].angularModualJS, function (angularAMD) {
     var cfg = window["appConfig"];
     var app = angular.module("app", cfg.angularModualNames);
 
-	if(appConfig.unitTest){
-		app._angularAMD_=angularAMD;
-	}
-	
+    if (appConfig.unitTest) {
+        app._angularAMD_ = angularAMD;
+    }
+
     //config $N
     app.run(function ($N) {
-        $N.showLoading = cfg.showLoading;
-        if (cfg.loadingDom) {
-            $N.dom = cfg.loadingDom;
-        }
-        if (cfg.loadingDelay) {
-            $N.loadingDelay = cfg.loadingDelay;
-        }
+//        $N.showLoading = cfg.showLoading;
+//        if (cfg.loadingDom) {
+//            $N.dom = cfg.loadingDom;
+//        }
+//        if (cfg.loadingDelay) {
+//            $N.loadingDelay = cfg.loadingDelay;
+//        }
+        $N._infoContainer.appendTo(document.body);
     });
 
     //config url route
     //#region 静态配置路由
     var routeOps = window["appRouteUrl"];
-    app.config(["$routeProvider", function ($routeProvider) {
+    app.config(function ($routeProvider) {
         angular.forEach(routeOps, function (val) {
             if (val.redirectTo) {
                 $routeProvider.otherwise(val);
@@ -34,7 +38,8 @@ define(window["appConfig"].angularModualJS, function (angularAMD) {
                 $routeProvider.when(routeUrl, angularAMD.route(val));
             }
         });
-    }]);
+
+    });
     //#endregion
 
 
@@ -92,7 +97,7 @@ define(window["appConfig"].angularModualJS, function (angularAMD) {
 
 
     //interceptor http
-    app.factory("httpInterceptor", ["$N","$q", function ($N,$q) {
+    app.factory("httpInterceptor", ["$N", "$q", function ($N, $q) {
         return {
             'request': function (config) {
                 //处理自定义headers
@@ -137,15 +142,15 @@ define(window["appConfig"].angularModualJS, function (angularAMD) {
         //$httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     });
 
-	
-	//_baseController
-	if(appConfig.parentController){
-	    app.controller("_parentController", appConfig.parentController);
-	}
-	
+
+    //_baseController
+    if (appConfig.parentController) {
+        app.controller("_parentController", appConfig.parentController);
+    }
+
     //start
     angularAMD.bootstrap(app);
-	
+
     return app;
 });
 //javascript 1.8 及以上的功能 在移动端部分浏览器没有此功能
@@ -178,7 +183,7 @@ if (!Function.prototype.bind) {
  * 开发directive的命名规则,如:定义是的名字为myPager,使用时的名字为my-pager. 潜规则
  * */
 angular.module("NProvider", ["ng"]).
-    directive("myPager", function ($timeout) {
+    directive("myPager",function ($timeout) {
         return {
             require: "ngModel",
             restrict: "ACE",
@@ -194,7 +199,7 @@ angular.module("NProvider", ["ng"]).
                 var timer = null;
 
                 function setViewValue(value) {
-                    console.info("set new value");
+//                    console.info(attrs["myPager"]+":set new value");
                     if (controller) {
                         if (value.index < 1) value.index = 1;
                         if (value.index > value.totalPage) value.index = value.totalPage;
@@ -205,25 +210,24 @@ angular.module("NProvider", ["ng"]).
                 }
 
                 function render(value) {
-                    console.info("render");
+//                    console.info(attrs["myPager"]+":render");
                     if (value.index <= 1) btnPre.attr("disabled", "");
                     else btnPre.removeAttr("disabled");
                     if (value.index >= value.totalPage) btnNext.attr("disabled", "");
                     else btnNext.removeAttr("disabled");
                     if (controller) {
-                        console.info("controller render");
+//                        console.info(attrs["myPager"]+":controller render");
                         controller.$render();
                     }
                 }
 
                 function pageChange(value) {
-                    console.info("page change");
+//                    console.info(attrs["myPager"]+":page change");
                     first = false;
-
                     var promise = value.change();
                     if (promise && promise["finally"]) {
                         promise["finally"](function () {
-                            console.info("resolve page change");
+//                            console.info(attrs["myPager"]+":resolve page change");
                             value.pages = [];
                             for (var i = 1; i <= value.totalPage; i++) value.pages.push(i);
                             value.pages.push("...");
@@ -251,9 +255,9 @@ angular.module("NProvider", ["ng"]).
                 scope.$watch(function (s) {
                     return s[attrs.ngModel];
                 }, function (newVal, oldVal) {
-                    console.info(newVal);
-                    console.info(oldVal);
-                    console.info("data change");
+//                    console.info(newVal);
+//                    console.info(oldVal);
+//                    console.info(attrs["myPager"]+":data change");
                     if (timer) clearTimeout(timer);
                     timer = setTimeout(function () {
                         //index,size changed or first=true
@@ -270,11 +274,13 @@ angular.module("NProvider", ["ng"]).
     }).
     provider("$N", function () {
         function N() {
-            this.showLoading = false;
-            this.dom = null;
+            this.showLoading = appConfig.showLoading || false;
+            this.dom = appConfig.loadingDom || null;
             this.timeout = null;
-            this.width = null;
-            this.loadingDelay = 500;
+//            this.width = null;
+            this.loadingDelay = appConfig.loadingDelay || 500;
+            this._infoContainer = angular.element("<div class='pure-g app-info-container'></div>");
+            this._infoDelay = appConfig.infoDelay || 4000;
         };
         N.prototype = {
             loading: function (config) {
@@ -295,13 +301,13 @@ angular.module("NProvider", ["ng"]).
             },
             loaded: function (response) {
                 if (this.showLoading) {
-                    if (!this.width) {
-                        if (window.getComputedStyle)
-                            this.width = parseInt(window.getComputedStyle(this.dom).width);
-                        else if (this.dom.currentStyle) {
-                            this.width = parseInt(this.dom.currentStyle.width);
-                        }
-                    }
+//                    if (!this.width) {
+//                        if (window.getComputedStyle)
+//                            this.width = parseInt(window.getComputedStyle(this.dom).width);
+//                        else if (this.dom.currentStyle) {
+//                            this.width = parseInt(this.dom.currentStyle.width);
+//                        }
+//                    }
 
                     function hideLoading() {
                         //this.dom.style.right = "-" + this.width + "px";
@@ -311,10 +317,33 @@ angular.module("NProvider", ["ng"]).
                 }
             },
             goto: function (url) {
-                if (url.indexOf("#") > 0) { }
+                if (url.indexOf("#") > 0) {
+                }
                 else {
                     window.location.href = url;
                 }
+            },
+            alert: function (msg, ok) {
+                alert(msg);
+                if (ok) ok();
+            },
+            info: function (msg) {
+                var me=this;
+                var item= angular.element("<div class='pure-u-1'></div>");
+                item.text(msg);
+                this._infoContainer.prepend(item);
+                (function(item,delay){
+                    var timer=setTimeout(function(){
+                        item.remove();
+                        clearTimeout(timer);
+                        timer=null;
+                    },delay);
+                })(item,me._infoDelay);
+//                var timer=setTimeout(function(){
+//                    li.remove();
+//                    clearTimeout(timer);
+//                    timer=null;
+//                },me._infoDelay);
             }
         };
         this.$get = function () {
@@ -355,4 +384,5 @@ angular.module("NProvider", ["ng"]).
         }
     };
     window["N"]["Pager"] = pager;
+
 })();
