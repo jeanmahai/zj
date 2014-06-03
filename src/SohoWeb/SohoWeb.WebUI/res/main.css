@@ -70,3 +70,18 @@
     -moz-animation:spinoffPulse 1s infinite linear;
     -webkit-animation:spinoffPulse 1s infinite linear;
 }
+.app-info-container {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    padding: 0px;
+    margin: 0px;
+    width: 350px;
+}
+
+.app-info-container>div {
+    background: #ffff00;
+    padding: 10px;
+    -webkit-animation: showInfo 0.8s;
+    overflow: hidden;
+}

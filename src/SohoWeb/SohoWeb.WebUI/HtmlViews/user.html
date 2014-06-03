@@ -89,7 +89,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    //function checkAll(tar) {
-    //    $("[ng-model='a.Checked']").prop("checked", $(tar).prop("checked"));
-    //}
+    angular.element("input[type=text],input[type=password]").each(function () {
+        $(this).attr("placeholder", $(this).prev().text().replace(":", ""));
+    });
 </script>

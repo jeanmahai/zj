@@ -1,7 +1,6 @@
 ﻿define(["app", "_baseController"], function (app) {
     app.register.controller("ControlPanelController",
-    function ($scope, $http, $routeParams, $controller) {
-        angular.extend(this, $controller("_baseController", { $scope: $scope }));
+    function ($scope, $http, $routeParams, $N) {
         var user = {
             data: {},
             list: [],
@@ -15,18 +14,18 @@
             modifyPassword: function () {
                 var me = this;
                 if (me.data.NewPassword !== me.data.ConfirmPassword) {
-                    alert("两次密码输入不一致,请重新输入");
+                    $N.info("两次密码输入不一致,请重新输入");
                     return;
                 }
                 $http.post("/ControlPanel/ModifyPassword", me.data).success(function () {
-                    alert("密码修改成功");
+                    $N.info("密码修改成功");
                 });
             },
             save: function () {
                 //如果有sysno就是修改否则就是添加
                 var me = this;
                 if (me.data.Password !== me.data.ConfirmPassword) {
-                    alert("两次密码输入不一致,请重新输入");
+                    $N.info("两次密码输入不一致,请重新输入");
                     me.data.Password = "";
                     me.data.ConfirmPassword = "";
                     return;
@@ -37,7 +36,7 @@
                     if (!isNaN(sysNo) && sysNo > 0) {
                         $http.post("/ControlPanel/UpdateUser", me.data).
                             success(function (res) {
-                                alert("修改成功");
+                                $N.info("修改成功");
                             });
                         return;
                     }
@@ -46,7 +45,7 @@
                 //add
                 $http.post("/ControlPanel/InsertUser", me.data).success(function (data) {
                     console.info(data);
-                    alert("添加成功");
+                    $N.info("添加成功");
                 }).catch(function () {
                     console.info(arguments);
                 });
@@ -61,7 +60,7 @@
                     console.info(sysNos);
                     $http.post("/ControlPanel/DeleteUser", sysNos).
                         success(function (res) {
-                            alert("删除成功!");
+                            $N.info("删除成功!");
                         });
                 }
 
@@ -85,12 +84,12 @@
                 var me = this;
                 $http.post("/ControlPanel/GetUserByUserSysNo", me.data).
                     success(function (res) {
-
                         me.data = {
+                            SysNo: res.SysNo,
                             UserID: res.UserID,
                             UserName: res.UserName,
-                            SysNo: res.SysNo
-                        };
+                            Status: res.Status
+                        }
                     });
             }
         };
@@ -158,7 +157,7 @@
                 });
             });
             $http.post("/ControlPanel/SaveUserRoles", postData).success(function () {
-                alert("保存成功!");
+                $N.info("保存成功!");
             });
         };
 
@@ -173,7 +172,7 @@
                 });
             });
             $http.post("/ControlPanel/SaveUserFunctions", postData).success(function () {
-                alert("保存成功!");
+                $N.info("保存成功!");
             });
         };
 

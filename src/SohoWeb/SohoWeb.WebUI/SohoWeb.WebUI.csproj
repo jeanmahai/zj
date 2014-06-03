@@ -280,6 +280,18 @@
   <ItemGroup>
     <Content Include="Configuration\Data\ControlPanel\LogsMgt.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\lib\angular.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\lib\angular-cookies.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\lib\angular-route.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\lib\jquery.min.map" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
