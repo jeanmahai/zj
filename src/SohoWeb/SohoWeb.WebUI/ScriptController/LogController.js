@@ -19,7 +19,7 @@
 
             $http.post("/ControlPanel/QueryLogs",filter).success(function (res) {
 
-
+                $scope.result = res.ResultList;
 
             });
 
