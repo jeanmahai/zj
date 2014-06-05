@@ -64,6 +64,8 @@
     <Compile Include="Gifts\GiftQueryFilter.cs" />
     <Compile Include="Gifts\GiftsGrantRecord.cs" />
     <Compile Include="Gifts\GiftsGrantRecordQueryFilter.cs" />
+    <Compile Include="InfoMgt\EmailAndSMSTemplates.cs" />
+    <Compile Include="InfoMgt\EmailAndSMSTemplatesQueryFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryResult.cs" />
   </ItemGroup>

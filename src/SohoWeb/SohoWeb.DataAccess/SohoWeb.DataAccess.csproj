@@ -53,6 +53,7 @@
     <Compile Include="ControlPanel\UsersMgtDA.cs" />
     <Compile Include="DataAccessUtil.cs" />
     <Compile Include="Gifts\GiftsMgtDA.cs" />
+    <Compile Include="InfoMgt\InfoTemplatesMgtDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
