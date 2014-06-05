@@ -106,6 +106,7 @@ namespace SohoWeb.WebUI.Controllers
         public ActionResult UpdateUserStatus()
         {
             var user = GetParams<Users>();
+            this.SetEntityBase(user, false);
             UsersMgtService.Instance.UpdateUserStatusBySysNo(user);
 
             PortalResult result = new PortalResult()
