@@ -40,10 +40,40 @@
     };
     //url route
     window["appRouteUrl"] = [{
+        routeUrl: "/prizesent/:action",
+        templateUrl: function ($routeParams) {
+            var action = $routeParams["action"];
+            if (new RegExp("insert", "i").test(action)) {
+                return "../HtmlViews/prizesent_maintain.html";
+            }
+            else if (new RegExp("[0-9]+", "i").test(action)) {
+                return "../HtmlViews/prizesent_maintain.html";
+            }
+            else {
+                return "../HtmlViews/prizesent.html";
+            }
+        },
+        controller: "PrizeSentController"
+    },{
+        routeUrl: "/prize/:action",
+        templateUrl: function ($routeParams) {
+            var action = $routeParams["action"];
+            if (new RegExp("insert", "i").test(action)) {
+                return "../HtmlViews/prize_maintain.html";
+            }
+            else if (new RegExp("[0-9]+", "i").test(action)) {
+                return "../HtmlViews/prize_maintain.html";
+            }
+            else {
+                return "../HtmlViews/prize.html";
+            }
+        },
+        controller: "PrizeController"
+    }, {
         routeUrl: "/log",
         templateUrl: "../HtmlViews/log.html",
         controller: "LogController"
-    },{
+    }, {
         routeUrl: "/role/allot/fun/:RoleSysNo",
         templateUrl: "../HtmlViews/role_allot_fun.html",
         controller: "RoleController"
