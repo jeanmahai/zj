@@ -112,6 +112,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\GiftsMgtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
@@ -297,6 +298,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="res\lib\jquery.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Data\Gifts\GiftsMgt.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
