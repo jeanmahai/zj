@@ -135,6 +135,10 @@
     <Content Include="HtmlViews\funs_insert.html" />
     <Content Include="HtmlViews\funs_update.html" />
     <Content Include="HtmlViews\log.html" />
+    <Content Include="HtmlViews\prize.html" />
+    <Content Include="HtmlViews\prize_maintain.html" />
+    <Content Include="HtmlViews\prizesent_maintain.html" />
+    <Content Include="HtmlViews\prizesent.html" />
     <Content Include="HtmlViews\role.html" />
     <Content Include="HtmlViews\role_allot_fun.html" />
     <Content Include="HtmlViews\role_insert.html" />
@@ -199,6 +203,8 @@
     <Content Include="res\main.js" />
     <Content Include="res\scripts\page_init.js" />
     <Content Include="ScriptController\LogController.js" />
+    <Content Include="ScriptController\PrizeController.js" />
+    <Content Include="ScriptController\PrizeSentController.js" />
     <Content Include="ScriptController\RoleController.js" />
     <Content Include="Views\customer.html" />
     <Content Include="Views\customer_add.html" />
