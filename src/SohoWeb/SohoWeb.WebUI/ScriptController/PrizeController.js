@@ -32,7 +32,7 @@
                 PageIndex: $scope.pager.index,
                 PageSize: $scope.pager.size
             };
-            angular.extend($scope.data, filter);
+            angular.extend(filter, $scope.data);
             $http.post("/GiftsMgt/QueryGifts", filter).success(function (res) {
                 $scope.result = res.ResultList;
                 $scope.pager.setTotal(res.TotalCount);
