@@ -1,14 +1,28 @@
 ﻿define(["app"], function (app) {
 
-    app.register.controller("PrizeSentController", function ($scope) {
+    app.register.controller("PrizeSentController", function ($scope, $N, $http) {
 
         $scope.data = {};
         $scope.result = [];
 
-        $scope.insert = function () { };
+        $scope.insert = function () {
+            $http.post("/GiftsMgt/InsertGiftsGrantRecord", $scope.data).success(function (res) {
+                $N.info("添加成功");
+            });
+        };
         $scope.delete = function () { };
         $scope.update = function () { };
-        $scope.select = function () { };
+        $scope.select = function () {
+            var filter = {
+                PageIndex: $scope.pager.index,
+                PageSize: $scope.pager.size
+            };
+            angular.extend($scope.data, filter);
+            $http.post("/GiftsMgt/QueryGiftsGrantRecord", filter).success(function (res) {
+                $scope.result = res.ResultList;
+                $scope.pager.setTotal(res.TotalCount);
+            });
+        };
         $scope.save = function () {
             if ($scope.data.SysNo > 0) {
                 $scope.update();

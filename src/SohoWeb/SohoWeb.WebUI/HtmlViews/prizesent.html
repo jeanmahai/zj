@@ -3,7 +3,7 @@
         <div class="header">
             <div class="title">奖品发放记录</div>
             <div class="button-bar">
-                <a href="#/prize/insert">发放奖品</a><a href="javascript:void(0)" ng-click="delete();">删除所选记录</a>
+                <a href="#/prizesent/insert">发放奖品</a><a href="javascript:void(0)" ng-click="delete();">删除所选记录</a>
             </div>
         </div>
     </div>
@@ -14,22 +14,22 @@
                 <div class="pure-g" style="padding-left:10px;">
                     <div class="pure-u-1-6">
                         <label>
-                            <span>奖品编号:</span><input type="text" class="pure-input-2-3" ng-model="data.SysNo" />
+                            <span>奖品编号:</span><input type="text" class="pure-input-2-3" ng-model="data.GiftSysNo" />
                         </label>
                     </div>
                     <div class="pure-u-1-6">
                         <label>
-                            <span>发放时间:</span><input type="text" class="pure-input-2-3" ng-model="data.RoleName" />
+                            <span>发放时间:</span><input type="text" ui-date class="pure-input-2-3" ng-model="data.GrantDate" />
                         </label>
                     </div>
                     <div class="pure-u-1-6">
                         <label>
-                            <span>发放人:</span><input type="text" class="pure-input-2-3" ng-model="data.RoleName" />
+                            <span>发放人:</span><input type="text" class="pure-input-2-3" ng-model="data.GrantPerson" />
                         </label>
                     </div>
                     <div class="pure-u-1-6">
                         <label>
-                            <span>发放地点:</span><input type="text" class="pure-input-2-3" ng-model="data.RoleName" />
+                            <span>发放地点:</span><input type="text" class="pure-input-2-3" ng-model="data.GrantPlace" />
                         </label>
                     </div>
 
@@ -62,12 +62,12 @@
                 <tr ng-repeat="a in result">
                     <td>
                         <input type="checkbox" value="{{a.SysNo}}" ng-model="a.Checked" /></td>
-                    <th>#</th>
-                   <th>奖品编号</th>
-                    <th>发放数量</th>
-                    <th>发放时间</th>
-                    <th>发放人</th>
-                    <th>发放地点</th>
+                    <th>{{a.SysNo}}</th>
+                   <th>{{a.GiftSysNo}}</th>
+                    <th>{{a.GrantCounts}}</th>
+                    <th>{{a.GrantDate}}</th>
+                    <th>{{a.GrantPerson}}</th>
+                    <th>{{a.GrantPlace}}</th>
                 </tr>
             </tbody>
         </table>

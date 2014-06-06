@@ -187,7 +187,7 @@
             "angular-date": {
                 deps: ["angular", "jquery-ui"],
                 init: function (a, b, c) {
-                    loadCss("res/lib/jquery-ui.min.css");
+                    loadCss("res/lib/pepper-grinder/jquery-ui.min.css");
                 }
             },
             'app': {

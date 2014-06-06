@@ -11,15 +11,15 @@
         <form class="pure-form">
             <fieldset>
                 <legend></legend>
-                <div class="pure-g" style="padding-left:10px;">
+                <div class="pure-g" style="padding-left: 10px;">
                     <div class="pure-u-1-6">
                         <label>
-                            <span>奖品编号:</span><input type="text" class="pure-input-2-3" ng-model="data.SysNo" />
+                            <span>奖品编号:</span><input type="text" class="pure-input-2-3" ng-model="data.GiftID" />
                         </label>
                     </div>
                     <div class="pure-u-1-6">
                         <label>
-                            <span>奖品名称:</span><input type="text" class="pure-input-2-3" ng-model="data.RoleName" />
+                            <span>奖品名称:</span><input type="text" class="pure-input-2-3" ng-model="data.GiftName" />
                         </label>
                     </div>
 
@@ -48,12 +48,12 @@
         <table class="pure-table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>#</th>
-                    <th>奖品编号</th>
-                    <th>奖品名称</th>
-                    <th>市场价</th>
-                    <th>状态</th>
+                    <th style="width: 35px;"></th>
+                    <th style="width: 60px;">#</th>
+                    <th style="width: 70px;">奖品编号</th>
+                    <th style="width: 100px;">奖品名称</th>
+                    <th style="width: 50px;">市场价</th>
+                    <th style="width: 60px;">状态</th>
                     <th>描述</th>
                 </tr>
             </thead>
@@ -61,12 +61,12 @@
                 <tr ng-repeat="a in result">
                     <td>
                         <input type="checkbox" value="{{a.SysNo}}" ng-model="a.Checked" /></td>
-                    <th>#</th>
-                    <th>奖品编号</th>
-                    <th>奖品名称</th>
-                    <th>市场价</th>
-                    <th>状态</th>
-                    <th>描述</th>
+                    <td><a href="#/prize/{{a.SysNo}}">{{a.SysNo}}</a></td>
+                    <td>{{a.GiftID}}</td>
+                    <td>{{a.GiftName}}</td>
+                    <td>{{a.MarketPrice}}</td>
+                    <td>{{a.StatusText}}</td>
+                    <td style="text-align: left;">{{a.Descriptions}}</td>
                 </tr>
             </tbody>
         </table>
