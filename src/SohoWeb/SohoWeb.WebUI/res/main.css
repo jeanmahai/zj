@@ -17,6 +17,7 @@
     display:block;
     display:none \9;
     opacity:0;
+    z-index: 1000
 }
 .loading-running { 
     opacity:1;

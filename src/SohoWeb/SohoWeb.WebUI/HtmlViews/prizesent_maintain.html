@@ -17,15 +17,15 @@
                     </div>
                     <div class="pure-u-1-3">
                         <label>
-                            <span>奖品编号:</span><input disabled="" class="pure-input-2-3" type="text" ng-model="data.GiftSysNo" /></label>
+                            <span>奖品编号:</span><input style="color: black;" disabled="" class="pure-input-2-3" type="text" ng-model="data.GiftSysNo" /></label>
                     </div>
-                    <div class="pure-u-1-3"><button class="pure-button">查找<i class="fa fa-search"></i></button></div>
+                    <div class="pure-u-1-3"><button class="pure-button" id="btnSelectPrize">查找<i class="fa fa-search"></i></button></div><!---->
                     
                     <div class="pure-u-1-3">
                     </div>
                     <div class="pure-u-1-3">
                         <label>
-                            <span>奖品名称:</span><input disabled="" class="pure-input-2-3" type="text" ng-model="data.GiftName" /></label>
+                            <span>奖品名称:</span><input style="color: black;" disabled="" class="pure-input-2-3" type="text" ng-model="data.GiftName" /></label>
                     </div>
                     <div class="pure-u-1-3"></div>
 
@@ -66,3 +66,96 @@
         </form>
     </div>
 </div>
+<div title="选择奖品" style="display: none; " id="dialogSelectPrize" >
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <form class="pure-form">
+                <fieldset>
+                    <legend></legend>
+                    <div class="pure-g" style="padding-left: 10px;">
+                        <div class="pure-u-1-4">
+                            <label>
+                                <span>奖品编号:</span><input type="text" class="pure-input-2-3" ng-model="prizeFilter.GiftID" />
+                            </label>
+                        </div>
+                        <div class="pure-u-1-4">
+                            <label>
+                                <span>奖品名称:</span><input type="text" class="pure-input-2-3" ng-model="prizeFilter.GiftName" />
+                            </label>
+                        </div>
+
+                        <div class="pure-u-1-4">
+                            <label>
+                                <span>状态:</span><select class="pure-input-2-3" ng-model="prizeFilter.Status">
+                                    <option ng-repeat="item in prizeStatus" value="{{item.Key}}">{{item.Value}}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="pure-u-1-4">
+                            <button class="pure-button button-secondary" ng-click="selectPrize()">
+                                查询 <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <div class="pure-u-1">
+            <table class="pure-table" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th style="width: 35px;"></th>
+                        <th style="width: 60px;">#</th>
+                        <th style="width: 70px;">奖品编号</th>
+                        <th style="width: 100px;">奖品名称</th>
+                        <th style="width: 50px;">市场价</th>
+                        <th style="width: 60px;">状态</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="a in prizeResult">
+                        <td>
+                            <input type="radio" name="rbPrize" value="{{a.SysNo}}" ng-model="a.Checked" /></td>
+                        <td><a href="#/prize/{{a.SysNo}}">{{a.SysNo}}</a></td>
+                        <td>{{a.GiftID}}</td>
+                        <td>{{a.GiftName}}</td>
+                        <td>{{a.MarketPrice}}</td>
+                        <td>{{a.StatusText}}</td>
+                        <td style="text-align: left;">{{a.Descriptions}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="pure-paginator" my-pager ng-model="pager" first-load="true">
+                <li><a class="pure-button prev" href="#">&#171;</a></li>
+                <li ng-repeat="a in pager.pages"><a class="pure-button" ng-click="pager.goto(a)">{{a}}</a></li>
+                <li><a class="pure-button next" href="#">&#187;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function showPrizeDialog() {
+        angular.element("#dialogSelectPrize").dialog({
+            width: 850,
+            modal: true,
+            open:function () {
+                prizeSentScope.selectPrize();
+            },
+            buttons: {
+                "确定":function () {
+                    if (prizeSentScope.hasSelected()) {
+                        prizeSentScope.bindPrize();
+                        $(this).dialog("close");
+                    }
+                    else {
+                        alert("请选择一个奖品");
+                    }
+                }
+            }
+        });
+    }
+
+    angular.element("#btnSelectPrize").bind("click",showPrizeDialog);
+</script>

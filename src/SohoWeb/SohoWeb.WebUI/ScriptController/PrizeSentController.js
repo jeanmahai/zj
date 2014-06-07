@@ -1,6 +1,10 @@
-﻿define(["app"], function (app) {
+﻿var prizeSentScope;
+
+define(["app"], function (app) {
 
     app.register.controller("PrizeSentController", function ($scope, $N, $http) {
+
+        prizeSentScope = $scope;
 
         $scope.data = {};
         $scope.result = [];
@@ -35,6 +39,44 @@
         $scope.pager = new N.Pager(1, 10, function () {
             $scope.select();
         });
+
+        $scope.prizeFilter = {};
+        $scope.prizeResult = [];
+        $scope.prizeStatus = [];
+        $scope.selectPrize = function () {
+            var filter = {
+                PageIndex: $scope.prizePager.index,
+                PageSize: $scope.prizePager.size
+            };
+            angular.extend(filter, $scope.prizeFilter);
+            $http.post("/GiftsMgt/QueryGifts", filter).success(function (res) {
+                $scope.prizeResult = res.ResultList;
+                $scope.prizePager.setTotal(res.TotalCount);
+            });
+        };
+        $scope.prizePager = new N.Pager(1, 10, function () {
+            $scope.selectPrize();
+        });
+        $http.post("/GiftsMgt/GetCommonStatusList").success(function (res) {
+            $scope.prizeStatus = res;
+        });
+        $scope.selectedPrize = {};
+        $scope.hasSelected = function () {
+            var selected = false;
+            angular.forEach($scope.prizeResult, function (value) {
+                if (value.Checked) {
+                    selected = true;
+                    $scope.selectedPrize = value;
+                }
+            });
+            return selected;
+        };
+        $scope.bindPrize = function () {
+            $scope.data.GiftSysNo = $scope.selectedPrize.SysNo;
+            $scope.data.GiftName = $scope.selectedPrize.GiftName;
+            $scope.$apply();
+        };
+
     });
 
     return app;
