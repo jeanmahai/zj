@@ -8,13 +8,14 @@ using SohoWeb.Service.InfoMgt;
 using SohoWeb.Entity.InfoMgt;
 using SohoWeb.Entity;
 using SohoWeb.Entity.Enums;
+using Soho.EmailAndSMS.Service.Entity;
 
 namespace SohoWeb.WebUI.Controllers
 {
     public class InfoMgtController : SSLController
     {
         /// <summary>
-        /// 获取奖品管理通用状态枚举列表
+        /// 获取电子邮件短息模板通用状态枚举列表
         /// </summary>
         /// <returns></returns>
         public ActionResult GetCommonStatusList()
@@ -161,6 +162,122 @@ namespace SohoWeb.WebUI.Controllers
                 Code = 0,
                 Success = true,
                 Data = true,
+                Message = ""
+            };
+            return View(result);
+        }
+
+        #endregion
+
+        #region 电子邮件
+
+        /// <summary>
+        /// 添加电子邮件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult InsertMail()
+        {
+            var requestVM = GetParams<EmailEntity>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.InsertMail(requestVM),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 批量添加电子邮件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BatchInsertMail()
+        {
+            var requestVM = GetParams<List<EmailEntity>>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.BatchInsertMail(requestVM),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 查询电子邮件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult QueryMail()
+        {
+            var requestVM = GetParams<EmailQueryFilter>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.QueryMail(requestVM),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        #endregion
+
+        #region 短信
+
+        /// <summary>
+        /// 添加短信
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult InsertSMS()
+        {
+            var requestVM = GetParams<SMSEntity>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.InsertSMS(requestVM),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 批量添加短信
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BatchInsertSMS()
+        {
+            var requestVM = GetParams<List<SMSEntity>>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.BatchInsertSMS(requestVM),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 查询短信
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult QuerySMS()
+        {
+            var requestVM = GetParams<SMSQueryFilter>();
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = EmailAndSMSService.Instance.QuerySMS(requestVM),
                 Message = ""
             };
             return View(result);

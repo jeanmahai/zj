@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 using Soho.Utility.DataAccess;
 using SohoWeb.Entity.ControlPanel;

@@ -53,6 +53,7 @@
     <Compile Include="ControlPanel\UserAuthService.cs" />
     <Compile Include="ControlPanel\UsersMgtService.cs" />
     <Compile Include="Gifts\GiftsMgtService.cs" />
+    <Compile Include="InfoMgt\EmailAndSMSService.cs" />
     <Compile Include="InfoMgt\InfoTemplatesMgtService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
