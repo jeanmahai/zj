@@ -115,6 +115,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ControlPanelController.cs" />
+    <Compile Include="Controllers\CustomerQueryCategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GiftsMgtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -327,6 +328,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\Data\InfoMgt\InfoTemplatesMgt.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Data\Customers\CustomerQuery.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

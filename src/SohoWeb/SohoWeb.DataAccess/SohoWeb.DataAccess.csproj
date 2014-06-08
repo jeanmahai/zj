@@ -51,6 +51,7 @@
     <Compile Include="ControlPanel\RolesMgtDA.cs" />
     <Compile Include="ControlPanel\UserAuthDA.cs" />
     <Compile Include="ControlPanel\UsersMgtDA.cs" />
+    <Compile Include="Customers\QueryCategoryCustomersDA.cs" />
     <Compile Include="DataAccessUtil.cs" />
     <Compile Include="Gifts\GiftsMgtDA.cs" />
     <Compile Include="InfoMgt\InfoTemplatesMgtDA.cs" />

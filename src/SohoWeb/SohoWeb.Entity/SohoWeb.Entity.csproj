@@ -56,9 +56,13 @@
     <Compile Include="ControlPanel\UserFunctions.cs" />
     <Compile Include="ControlPanel\Users.cs" />
     <Compile Include="ControlPanel\UsersQueryFilter.cs" />
+    <Compile Include="Customers\CategoryCustomersSendMail.cs" />
+    <Compile Include="Customers\CategoryCustomersSendSMS.cs" />
+    <Compile Include="Customers\QueryCategoryCustomersFilter.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EnumsHelper.cs" />
     <Compile Include="Enums\Common.cs" />
+    <Compile Include="Enums\CustomerEnums.cs" />
     <Compile Include="FilterBase.cs" />
     <Compile Include="Gifts\Gift.cs" />
     <Compile Include="Gifts\GiftQueryFilter.cs" />

@@ -42,5 +42,10 @@ namespace SohoWeb.Entity
         /// </summary>
         [DataMember]
         public List<T> ResultList { get; set; }
+        /// <summary>
+        /// 当前页数据
+        /// </summary>
+        [DataMember]
+        public T Result { get; set; }
     }
 }
