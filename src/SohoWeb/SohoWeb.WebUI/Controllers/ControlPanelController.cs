@@ -24,11 +24,13 @@ namespace SohoWeb.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetCommonStatusList()
         {
+            var dataResult = EnumsHelper.GetKeyValuePairs<CommonStatus>(EnumAppendItemType.Select);
+            dataResult.RemoveAt(1);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
                 Success = true,
-                Data = EnumsHelper.GetKeyValuePairs<CommonStatus>(EnumAppendItemType.Select),
+                Data = dataResult,
                 Message = ""
             };
             return View(result);

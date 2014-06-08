@@ -4,6 +4,7 @@ using Soho.Utility.Encryption;
 using SohoWeb.Entity;
 using SohoWeb.Entity.Gifts;
 using SohoWeb.DataAccess.Gifts;
+using System;
 
 namespace SohoWeb.Service.Gifts
 {
@@ -55,7 +56,21 @@ namespace SohoWeb.Service.Gifts
         /// <returns></returns>
         public QueryResult<GiftsGrantRecord> QueryGiftsGrantRecord(GiftsGrantRecordQueryFilter filter)
         {
-            return GiftsMgtDA.QueryGiftsGrantRecord(filter);
+            var data = GiftsMgtDA.QueryGiftsGrantRecord(filter);
+            data.ResultList.ForEach(m =>
+            {
+                m.GrantDate = DateTime.Parse(m.GrantDate).ToShortDateString();
+            });
+            return data;
+        }
+
+        /// <summary>
+        /// 删除奖品发放记录
+        /// </summary>
+        /// <param name="sysNo">奖品发放记录编号</param>
+        public void DeleteGiftsGrantRecord(int sysNo)
+        {
+            GiftsMgtDA.DeleteGiftsGrantRecord(sysNo);
         }
     }
 }

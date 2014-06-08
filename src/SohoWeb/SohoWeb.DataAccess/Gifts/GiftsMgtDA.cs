@@ -98,7 +98,7 @@ namespace SohoWeb.DataAccess.Gifts
             result.PageSize = filter.PageSize;
 
             PagingInfoEntity page = DataAccessUtil.ToPagingInfo(filter);
-            CustomDataCommand cmd = DataCommandManager.CreateCustomDataCommandFromConfig("QueryGifts");
+            CustomDataCommand cmd = DataCommandManager.CreateCustomDataCommandFromConfig("QueryGiftsGrantRecord");
             using (var sqlBuilder = new DynamicQuerySqlBuilder(cmd.CommandText, cmd, page, "M.SysNo DESC"))
             {
                 sqlBuilder.ConditionConstructor.AddCondition(QueryConditionRelationType.AND, "M.SysNo", DbType.Int32,
@@ -120,6 +120,17 @@ namespace SohoWeb.DataAccess.Gifts
 
                 return result;
             }
+        }
+
+        /// <summary>
+        /// 删除奖品发放记录
+        /// </summary>
+        /// <param name="sysNo">奖品发放记录编号</param>
+        public static void DeleteGiftsGrantRecord(int sysNo)
+        {
+            DataCommand cmd = DataCommandManager.GetDataCommand("DeleteGiftsGrantRecord");
+            cmd.SetParameterValue("@SysNo", sysNo);
+            cmd.ExecuteNonQuery();
         }
     }
 }

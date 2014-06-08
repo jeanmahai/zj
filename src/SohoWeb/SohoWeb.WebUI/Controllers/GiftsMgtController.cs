@@ -22,11 +22,13 @@ namespace SohoWeb.WebUI.Controllers
         /// <returns></returns>
         public ActionResult GetCommonStatusList()
         {
+            var dataResult = EnumsHelper.GetKeyValuePairs<CommonStatus>(EnumAppendItemType.Select);
+            dataResult.RemoveAt(1);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
                 Success = true,
-                Data = EnumsHelper.GetKeyValuePairs<CommonStatus>(EnumAppendItemType.Select),
+                Data = dataResult,
                 Message = ""
             };
             return View(result);
@@ -157,6 +159,31 @@ namespace SohoWeb.WebUI.Controllers
                 Code = 0,
                 Success = true,
                 Data = GiftsMgtService.Instance.QueryGiftsGrantRecord(filter),
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 删除奖品发放记录
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DeleteGiftsGrantRecord()
+        {
+            var request = GetParams<List<string>>();
+
+            int sysNo = 0;
+            if (request != null && request.Count > 0)
+            {
+                sysNo = int.Parse(request[0]);
+            }
+            GiftsMgtService.Instance.DeleteGiftsGrantRecord(sysNo);
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = true,
                 Message = ""
             };
             return View(result);
