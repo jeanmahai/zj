@@ -57,6 +57,7 @@
     <Compile Include="InfoMgt\EmailAndSMSService.cs" />
     <Compile Include="InfoMgt\InfoTemplatesMgtService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statement\StatementService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SohoWeb.DataAccess\SohoWeb.DataAccess.csproj">

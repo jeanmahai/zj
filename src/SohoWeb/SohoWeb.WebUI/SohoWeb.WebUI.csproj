@@ -122,6 +122,7 @@
     <Compile Include="Controllers\InfoMgtController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\SystemUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -331,6 +332,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\Data\Customers\CustomerQuery.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Data\Statement\Statements.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

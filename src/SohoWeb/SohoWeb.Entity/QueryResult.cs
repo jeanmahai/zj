@@ -47,5 +47,10 @@ namespace SohoWeb.Entity
         /// </summary>
         [DataMember]
         public T Result { get; set; }
+        /// <summary>
+        /// 合计值
+        /// </summary>
+        [DataMember]
+        public decimal TotalValue { get; set; }
     }
 }

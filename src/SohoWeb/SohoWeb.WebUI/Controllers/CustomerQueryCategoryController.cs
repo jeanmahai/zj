@@ -87,5 +87,45 @@ namespace SohoWeb.WebUI.Controllers
             };
             return View(result);
         }
+
+        /// <summary>
+        /// 发送邮件给批量用户
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SendMailToBatchCustomers()
+        {
+            var requestVM = GetParams<BatchCustomersSendMail>();
+
+            QueryCategoryCustomersService.Instance.SendMailToBatchCustomers(requestVM);
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = true,
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 发送短信给批量用户
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SendSMSToBatchCustomers()
+        {
+            var requestVM = GetParams<BatchCustomersSendSMS>();
+
+            QueryCategoryCustomersService.Instance.SendSMSToBatchCustomers(requestVM);
+
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = true,
+                Message = ""
+            };
+            return View(result);
+        }
     }
 }

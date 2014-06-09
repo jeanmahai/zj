@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SohoWeb.Entity;
 using System.Collections;
 using SohoWeb.Entity.Customers;
 using Soho.Utility.DataAccess;
-using SohoWeb.Entity.Enums;
 
 namespace SohoWeb.DataAccess.Customers
 {
@@ -79,6 +75,18 @@ namespace SohoWeb.DataAccess.Customers
 
                 return result;
             }
+        }
+
+        /// <summary>
+        /// 根据用户编号获取用户
+        /// </summary>
+        /// <param name="customerID">用户编号</param>
+        /// <returns></returns>
+        public static ArrayList GetCustomerByCustomerID(int customerID)
+        {
+            DataCommand cmd = DataCommandManager.GetDataCommand("GetCustomerByCustomerID");
+            cmd.SetParameterValue("@CustomerID", customerID);
+            return DbHelper.DatatableConvertArrayList(cmd.ExecuteDataTable());
         }
     }
 }

@@ -57,7 +57,7 @@ namespace SohoWeb.Service.Customers
                 Category = entity.Category
             };
             QueryResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
-            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.PageCount > 0)
+            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.ResultList.Count > 0)
             {
                 Soho.EmailAndSMS.Service.Entity.EmailEntity mailEntity = new Soho.EmailAndSMS.Service.Entity.EmailEntity();
                 mailEntity.Status = Soho.EmailAndSMS.Service.Entity.EmailStatus.AuditPassed;
@@ -106,7 +106,7 @@ namespace SohoWeb.Service.Customers
                 Category = entity.Category
             };
             QueryResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
-            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.PageCount > 0)
+            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.ResultList.Count > 0)
             {
                 Soho.EmailAndSMS.Service.Entity.SMSEntity smsEntity = new Soho.EmailAndSMS.Service.Entity.SMSEntity();
                 smsEntity.Status = Soho.EmailAndSMS.Service.Entity.SMSStatus.AuditPassed;
@@ -133,6 +133,94 @@ namespace SohoWeb.Service.Customers
                     }
                 }
                 EmailAndSMSService.Instance.BatchInsertSMS(sendSMSList);
+            }
+        }
+
+        /// <summary>
+        /// 发送邮件给批量用户
+        /// </summary>
+        /// <param name="entity">邮件内容</param>
+        public void SendMailToBatchCustomers(BatchCustomersSendMail entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.MailTitle))
+                throw new BusinessException("请输入邮件标题！");
+            if (string.IsNullOrWhiteSpace(entity.MailBody))
+                throw new BusinessException("请输入邮件内容！");
+
+            if (entity.CustomerIDList != null && entity.CustomerIDList.Count > 0)
+            {
+                Soho.EmailAndSMS.Service.Entity.EmailEntity mailEntity = new Soho.EmailAndSMS.Service.Entity.EmailEntity();
+                mailEntity.Status = Soho.EmailAndSMS.Service.Entity.EmailStatus.AuditPassed;
+                mailEntity.IsBodyHtml = entity.IsHtmlMail;
+                mailEntity.InDate = DateTime.Now;
+                mailEntity.EmailTitle = entity.MailTitle;
+                mailEntity.EmailPriority = System.Net.Mail.MailPriority.Normal;
+                mailEntity.EmailBody = entity.MailBody;
+                List<Soho.EmailAndSMS.Service.Entity.EmailEntity> sendMailList = new List<Soho.EmailAndSMS.Service.Entity.EmailEntity>();
+                entity.CustomerIDList.ForEach(m =>
+                {
+                    ArrayList users = QueryCategoryCustomersDA.GetCustomerByCustomerID(m);
+                    if (users != null && users.Count > 0)
+                    {
+                        Dictionary<string, object> item = users[0] as Dictionary<string, object>;
+                        foreach (var obj in item)
+                        {
+                            if (obj.Key.Equals("CustomerID"))
+                                mailEntity.UserSysNo = int.Parse(obj.Value.ToString());
+                            if (obj.Key.Equals("TrueName"))
+                                mailEntity.ReceiveName = obj.Value.ToString();
+                            if (obj.Key.Equals("Email"))
+                                mailEntity.ReceiveAddress = obj.Value.ToString();
+                        }
+                        if (!string.IsNullOrEmpty(mailEntity.ReceiveAddress))
+                        {
+                            sendMailList.Add(mailEntity);
+                        }
+                    }
+                });
+                EmailAndSMSService.Instance.BatchInsertMail(sendMailList);
+            }
+        }
+
+        /// <summary>
+        /// 发送短信给批量用户
+        /// </summary>
+        /// <param name="entity">短信内容</param>
+        public void SendSMSToBatchCustomers(BatchCustomersSendSMS entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.SMSBody))
+                throw new BusinessException("请输入短信内容！");
+
+            if (entity.CustomerIDList != null && entity.CustomerIDList.Count > 0)
+            {
+                Soho.EmailAndSMS.Service.Entity.SMSEntity smsEntity = new Soho.EmailAndSMS.Service.Entity.SMSEntity();
+                smsEntity.Status = Soho.EmailAndSMS.Service.Entity.SMSStatus.AuditPassed;
+                smsEntity.InDate = DateTime.Now;
+                smsEntity.SMSBody = entity.SMSBody;
+                List<Soho.EmailAndSMS.Service.Entity.SMSEntity> sendSMSList = new List<Soho.EmailAndSMS.Service.Entity.SMSEntity>();
+
+                entity.CustomerIDList.ForEach(m =>
+                {
+                    ArrayList users = QueryCategoryCustomersDA.GetCustomerByCustomerID(m);
+                    if (users != null && users.Count > 0)
+                    {
+                        Dictionary<string, object> item = users[0] as Dictionary<string, object>;
+                        foreach (var obj in item)
+                        {
+                            if (obj.Key.Equals("CustomerID"))
+                                smsEntity.UserSysNo = int.Parse(obj.Value.ToString());
+                            if (obj.Key.Equals("TrueName"))
+                                smsEntity.ReceiveName = obj.Value.ToString();
+                            if (obj.Key.Equals("ComMobile"))
+                                smsEntity.ReceivePhoneNumber = obj.Value.ToString();
+                        }
+                        if (!string.IsNullOrEmpty(smsEntity.ReceivePhoneNumber))
+                        {
+                            sendSMSList.Add(smsEntity);
+                        }
+                        EmailAndSMSService.Instance.BatchInsertSMS(sendSMSList);
+                    }
+                });
             }
         }
     }

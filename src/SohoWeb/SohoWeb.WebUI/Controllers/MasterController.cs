@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace SohoWeb.WebUI.Controllers
 {
+    /// <summary>
+    /// 母版页
+    /// </summary>
     public class MasterController : SSLController
     {
         public ActionResult Index()

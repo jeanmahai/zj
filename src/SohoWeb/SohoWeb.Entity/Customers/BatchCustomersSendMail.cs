@@ -1,25 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-
-using SohoWeb.Entity.Enums;
 
 namespace SohoWeb.Entity.Customers
 {
     /// <summary>
-    /// 给分类查询出的用户发送邮件对象
+    /// 给批量用户发送邮件对象
     /// </summary>
     [Serializable]
     [DataContract]
-    public class CategoryCustomersSendMail
+    public class BatchCustomersSendMail
     {
         /// <summary>
-        /// 查询的分类用户类型
+        /// 用户编号列表
         /// </summary>
         [DataMember]
-        public CustomerQueryCategory Category { get; set; }
+        public List<int> CustomerIDList { get; set; }
         /// <summary>
         /// 邮件标题
         /// </summary>
+        [DataMember]
         public string MailTitle { get; set; }
         /// <summary>
         /// 邮件内容

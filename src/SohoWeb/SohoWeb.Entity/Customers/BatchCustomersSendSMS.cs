@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
-
-using SohoWeb.Entity.Enums;
 
 namespace SohoWeb.Entity.Customers
 {
@@ -10,13 +9,13 @@ namespace SohoWeb.Entity.Customers
     /// </summary>
     [Serializable]
     [DataContract]
-    public class CategoryCustomersSendSMS
+    public class BatchCustomersSendSMS
     {
         /// <summary>
-        /// 查询的分类用户类型
+        /// 用户编号列表
         /// </summary>
         [DataMember]
-        public CustomerQueryCategory Category { get; set; }
+        public List<int> CustomerIDList { get; set; }
         /// <summary>
         /// 短信内容
         /// </summary>

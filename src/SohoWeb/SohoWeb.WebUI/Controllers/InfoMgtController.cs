@@ -12,6 +12,9 @@ using Soho.EmailAndSMS.Service.Entity;
 
 namespace SohoWeb.WebUI.Controllers
 {
+    /// <summary>
+    /// 信息管理
+    /// </summary>
     public class InfoMgtController : SSLController
     {
         /// <summary>

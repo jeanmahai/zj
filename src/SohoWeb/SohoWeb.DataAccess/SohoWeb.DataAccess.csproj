@@ -56,6 +56,7 @@
     <Compile Include="Gifts\GiftsMgtDA.cs" />
     <Compile Include="InfoMgt\InfoTemplatesMgtDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statement\StatementDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SohoWeb.Entity\SohoWeb.Entity.csproj">

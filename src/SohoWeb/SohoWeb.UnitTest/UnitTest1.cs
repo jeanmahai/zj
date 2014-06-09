@@ -8,6 +8,8 @@ using SohoWeb.Entity.Gifts;
 using SohoWeb.Service.InfoMgt;
 using SohoWeb.Entity.InfoMgt;
 using SohoWeb.Entity.Enums;
+using SohoWeb.Entity.Statement;
+using SohoWeb.Service.Statement;
 
 namespace SohoWeb.UnitTest
 {
@@ -74,7 +76,6 @@ namespace SohoWeb.UnitTest
             };
             var data = GiftsMgtService.Instance.QueryGiftsGrantRecord(filter);
         }
-
         [TestMethod]
         public void TestMethodQueryGifts()
         {
@@ -86,13 +87,11 @@ namespace SohoWeb.UnitTest
             };
             var data = GiftsMgtService.Instance.QueryGifts(filter); 
         }
-
         [TestMethod]
         public void TestMethodDeleteGiftsGrantRecord()
         {
             GiftsMgtService.Instance.DeleteGiftsGrantRecord(100002);
         }
-
 
 
         [TestMethod]
@@ -107,7 +106,6 @@ namespace SohoWeb.UnitTest
                 InUserName = "Tester"
             });
         }
-
         [TestMethod]
         public void TestMethodUpdateEmailAndSMSTemplates()
         {
@@ -120,8 +118,7 @@ namespace SohoWeb.UnitTest
                 EditUserSysNo = 0,
                 EditUserName = "Tester"
             });
-        }
-        
+        }        
         [TestMethod]
         public void TestMethodUpdateEmailAndSMSTemplatesStatus()
         {
@@ -133,13 +130,11 @@ namespace SohoWeb.UnitTest
                 EditUserName = "Tester"
             });
         }
-
         [TestMethod]
         public void TestMethodGetEmailAndSMSTemplatesBySysNo()
         {
             var data = InfoTemplatesMgtService.Instance.GetEmailAndSMSTemplatesBySysNo(1001);
         }
-
         [TestMethod]
         public void TestMethodQueryEmailAndSMSTemplates()
         {
@@ -153,6 +148,42 @@ namespace SohoWeb.UnitTest
                 SysNo = 1001
             };
             var data = InfoTemplatesMgtService.Instance.QueryEmailAndSMSTemplates(filter);
+        }
+
+
+        [TestMethod]
+        public void TestMethodCustomersLoseAnalyze()
+        {
+            CustomersLoseAnalyzeFilter filter = new CustomersLoseAnalyzeFilter() 
+            {
+                PageIndex = 1,
+                PageSize = 10,
+                Day = 90
+            };
+            var data = StatementService.Instance.CustomersLoseAnalyze(filter);
+        }
+        [TestMethod]
+        public void TestMethodDaySalesData()
+        {
+            DaySalesFilter filter = new DaySalesFilter()
+            {
+                PageIndex = 1,
+                PageSize = 10,
+                Date = "2014-06-00"
+            };
+            var data = StatementService.Instance.DaySalesData(filter);
+        }
+        [TestMethod]
+        public void TestMethodMonthSalesData()
+        {
+            MonthSalesFilter filter = new MonthSalesFilter()
+            {
+                PageIndex = 1,
+                PageSize = 10,
+                Year = 2012,
+                Month = 10
+            };
+            var data = StatementService.Instance.MonthSalesData(filter);
         }
     }
 }

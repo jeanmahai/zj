@@ -8,6 +8,9 @@ using Soho.Utility.Web.Framework;
 
 namespace SohoWeb.WebUI.Controllers
 {
+    /// <summary>
+    /// 登陆相关
+    /// </summary>
     public class LoginController : WWWController
     {
         /// <summary>
