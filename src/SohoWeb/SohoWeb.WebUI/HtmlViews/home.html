@@ -142,45 +142,28 @@
         <div style="padding: 5px;">
             <div style="padding: 5px; background: rgb(48,48,48); color: white; font-size: 1.1em;">最新系统日志</div>
             <table class="pure-table" style="width: 100%;">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>标题</th>
-                        <th>内容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>标题</td>
-                        <td>内容</td>
-                    </tr>
-                </tbody>
+                 <thead>
+                <tr>
+                    <th>#</th>
+                    <th>类型</th>
+                    <th>模块</th>
+                    <th>事件</th>
+                    <th>业务编号</th>
+                    <th>日志内容</th>
+                    <th>日志时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="a in logs">
+                    <td>{{a.SysNo}}</td>
+                    <td>{{a.ClassesText}}</td>
+                    <td>{{a.SectionText}}</td>
+                    <td>{{a.FamilyText}}</td>
+                    <td>{{a.RefenceSysNo}}</td>
+                    <td>{{a.Contents}}</td>
+                    <td>{{a.InDate}}</td>
+                </tr>
+            </tbody>
             </table>
         </div>
 

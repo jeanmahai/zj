@@ -137,6 +137,7 @@
   <ItemGroup>
     <Content Include="HtmlViews\allot_fun.html" />
     <Content Include="HtmlViews\allot_role.html" />
+    <Content Include="HtmlViews\email.html" />
     <Content Include="HtmlViews\funs.html" />
     <Content Include="HtmlViews\funs_insert.html" />
     <Content Include="HtmlViews\funs_update.html" />
@@ -187,6 +188,7 @@
     <Content Include="res\lib\underscore.js" />
     <Content Include="ScriptController\ControlPanelController.js" />
     <Content Include="ScriptController\CustomerController.js" />
+    <Content Include="ScriptController\EmailController.js" />
     <Content Include="ScriptController\FunsController.js" />
     <Content Include="ScriptController\HomeController.js" />
     <Content Include="Global.asax" />

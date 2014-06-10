@@ -34,12 +34,36 @@
             $scope._UserName = "";
             if ($cookies && $cookies["soho.web.username"]) {
                 $scope._UserName = $cookies["soho.web.username"].replace(/\"/gi, "");
-                $("#spanUserName").show()
+                $("#spanUserName").show();
             }
+
+            $scope.resetForm = function(form) {
+                if(form && form.reset) {
+                    form.reset();
+                }
+                else {
+                    angular.element("form:first")[0].reset();
+                }
+            };
         }
     };
     //url route
     window["appRouteUrl"] = [{
+        routeUrl: "/email/:action",
+        templateUrl: function ($routeParams) {
+            var action = $routeParams["action"];
+            if (new RegExp("insert", "i").test(action)) {
+                return "../HtmlViews/prizesent_maintain.html";
+            }
+            else if (new RegExp("[0-9]+", "i").test(action)) {
+                return "../HtmlViews/prizesent_maintain.html";
+            }
+            else {
+                return "../HtmlViews/email.html";
+            }
+        },
+        controller: "EmailController"
+    },{
         routeUrl: "/prizesent/:action",
         templateUrl: function ($routeParams) {
             var action = $routeParams["action"];
