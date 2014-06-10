@@ -13,9 +13,9 @@ namespace SohoWeb.DataAccess.Customers
         /// </summary>
         /// <param name="filter">查询条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> QueryThirtyDayNotLoginCustomers(QueryCategoryCustomersFilter filter)
+        public static StatementResult<ArrayList> QueryThirtyDayNotLoginCustomers(QueryCategoryCustomersFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 
@@ -36,9 +36,9 @@ namespace SohoWeb.DataAccess.Customers
         /// </summary>
         /// <param name="filter">查询条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> QueryNotHaveOrderCustomers(QueryCategoryCustomersFilter filter)
+        public static StatementResult<ArrayList> QueryNotHaveOrderCustomers(QueryCategoryCustomersFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 
@@ -59,9 +59,9 @@ namespace SohoWeb.DataAccess.Customers
         /// </summary>
         /// <param name="filter">查询条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> QuerySevenDayNotHaveOrder(QueryCategoryCustomersFilter filter)
+        public static StatementResult<ArrayList> QuerySevenDayNotHaveOrder(QueryCategoryCustomersFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 

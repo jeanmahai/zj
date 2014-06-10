@@ -15,7 +15,7 @@ namespace SohoWeb.Service.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public QueryResult<ArrayList> CustomersLoseAnalyze(CustomersLoseAnalyzeFilter filter)
+        public StatementResult<ArrayList> CustomersLoseAnalyze(CustomersLoseAnalyzeFilter filter)
         {
             if (filter.Day <= 0)
             {
@@ -29,7 +29,7 @@ namespace SohoWeb.Service.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public QueryResult<ArrayList> DaySalesData(DaySalesFilter filter)
+        public StatementResult<ArrayList> DaySalesData(DaySalesFilter filter)
         {
             DateTime dtNow = DateTime.Now;
             if (!DateTime.TryParse(filter.Date, out dtNow))
@@ -45,7 +45,7 @@ namespace SohoWeb.Service.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public QueryResult<ArrayList> MonthSalesData(MonthSalesFilter filter)
+        public StatementResult<ArrayList> MonthSalesData(MonthSalesFilter filter)
         {
             DateTime dtNow = DateTime.Now;
             if (!DateTime.TryParse(string.Format("{0}-01-01", filter.Year), out dtNow))

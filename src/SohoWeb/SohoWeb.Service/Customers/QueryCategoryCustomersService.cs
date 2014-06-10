@@ -19,9 +19,9 @@ namespace SohoWeb.Service.Customers
         /// </summary>
         /// <param name="filter">查询条件</param>
         /// <returns></returns>
-        public QueryResult<ArrayList> QueryCategoryCustomers(QueryCategoryCustomersFilter filter)
+        public StatementResult<ArrayList> QueryCategoryCustomers(QueryCategoryCustomersFilter filter)
         {
-            QueryResult<ArrayList> data = null;
+            StatementResult<ArrayList> data = null;
 
             switch (filter.Category)
             {
@@ -56,8 +56,8 @@ namespace SohoWeb.Service.Customers
                 PageSize = 100000000,
                 Category = entity.Category
             };
-            QueryResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
-            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.ResultList.Count > 0)
+            StatementResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
+            if (queryUsers != null && queryUsers.Result != null && queryUsers.Result.Count > 0)
             {
                 Soho.EmailAndSMS.Service.Entity.EmailEntity mailEntity = new Soho.EmailAndSMS.Service.Entity.EmailEntity();
                 mailEntity.Status = Soho.EmailAndSMS.Service.Entity.EmailStatus.AuditPassed;
@@ -68,7 +68,7 @@ namespace SohoWeb.Service.Customers
                 mailEntity.EmailBody = entity.MailBody;
                 List<Soho.EmailAndSMS.Service.Entity.EmailEntity> sendMailList = new List<Soho.EmailAndSMS.Service.Entity.EmailEntity>();
 
-                ArrayList users = queryUsers.ResultList[0];
+                ArrayList users = queryUsers.Result;
                 for (int i = 0; i < users.Count; i++)
                 {
                     Dictionary<string, object> item = users[i] as Dictionary<string, object>;
@@ -105,8 +105,8 @@ namespace SohoWeb.Service.Customers
                 PageSize = 100000000,
                 Category = entity.Category
             };
-            QueryResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
-            if (queryUsers != null && queryUsers.ResultList != null && queryUsers.ResultList.Count > 0)
+            StatementResult<ArrayList> queryUsers = QueryCategoryCustomers(filter);
+            if (queryUsers != null && queryUsers.Result != null && queryUsers.Result.Count > 0)
             {
                 Soho.EmailAndSMS.Service.Entity.SMSEntity smsEntity = new Soho.EmailAndSMS.Service.Entity.SMSEntity();
                 smsEntity.Status = Soho.EmailAndSMS.Service.Entity.SMSStatus.AuditPassed;
@@ -114,7 +114,7 @@ namespace SohoWeb.Service.Customers
                 smsEntity.SMSBody = entity.SMSBody;
                 List<Soho.EmailAndSMS.Service.Entity.SMSEntity> sendSMSList = new List<Soho.EmailAndSMS.Service.Entity.SMSEntity>();
 
-                ArrayList users = queryUsers.ResultList[0];
+                ArrayList users = queryUsers.Result;
                 for (int i = 0; i < users.Count; i++)
                 {
                     Dictionary<string, object> item = users[i] as Dictionary<string, object>;

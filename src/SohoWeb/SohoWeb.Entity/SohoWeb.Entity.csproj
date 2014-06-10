@@ -74,6 +74,7 @@
     <Compile Include="InfoMgt\EmailAndSMSTemplatesQueryFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryResult.cs" />
+    <Compile Include="StatementResult.cs" />
     <Compile Include="Statement\CustomersLoseAnalyzeFilter.cs" />
     <Compile Include="Statement\DaySalesFilter.cs" />
     <Compile Include="Statement\MonthSalesFilter.cs" />

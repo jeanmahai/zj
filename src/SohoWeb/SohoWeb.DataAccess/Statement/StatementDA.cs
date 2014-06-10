@@ -18,9 +18,9 @@ namespace SohoWeb.DataAccess.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> CustomersLoseAnalyze(CustomersLoseAnalyzeFilter filter)
+        public static StatementResult<ArrayList> CustomersLoseAnalyze(CustomersLoseAnalyzeFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 
@@ -44,9 +44,9 @@ namespace SohoWeb.DataAccess.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> DaySalesData(DaySalesFilter filter)
+        public static StatementResult<ArrayList> DaySalesData(DaySalesFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 
@@ -64,7 +64,7 @@ namespace SohoWeb.DataAccess.Statement
                 cmd.CommandText = sqlBuilder.BuildQuerySql();
                 result.Result = DbHelper.DatatableConvertArrayList(cmd.ExecuteDataTable());
                 result.TotalCount = Convert.ToInt32(cmd.GetParameterValue("@TotalCount"));
-                result.TotalValue = Convert.ToDecimal(cmd.GetParameterValue("@TotalAmnout"));
+                result.TotalValue = Convert.ToDecimal(cmd.GetParameterValue("@TotalAmount"));
 
                 return result;
             }
@@ -75,9 +75,9 @@ namespace SohoWeb.DataAccess.Statement
         /// </summary>
         /// <param name="filter">条件</param>
         /// <returns></returns>
-        public static QueryResult<ArrayList> MonthSalesData(MonthSalesFilter filter)
+        public static StatementResult<ArrayList> MonthSalesData(MonthSalesFilter filter)
         {
-            QueryResult<ArrayList> result = new QueryResult<ArrayList>();
+            StatementResult<ArrayList> result = new StatementResult<ArrayList>();
             result.ServicePageIndex = filter.ServicePageIndex;
             result.PageSize = filter.PageSize;
 
@@ -95,7 +95,7 @@ namespace SohoWeb.DataAccess.Statement
                 cmd.CommandText = sqlBuilder.BuildQuerySql();
                 result.Result = DbHelper.DatatableConvertArrayList(cmd.ExecuteDataTable());
                 result.TotalCount = Convert.ToInt32(cmd.GetParameterValue("@TotalCount"));
-                result.TotalValue = Convert.ToDecimal(cmd.GetParameterValue("@TotalAmnout"));
+                result.TotalValue = Convert.ToDecimal(cmd.GetParameterValue("@TotalAmount"));
 
                 return result;
             }

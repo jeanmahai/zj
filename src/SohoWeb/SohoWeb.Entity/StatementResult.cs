@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Runtime.Serialization;
 
 namespace SohoWeb.Entity
 {
     [Serializable]
     [DataContract]
-    public class QueryResult<T> where T : class
+    public class StatementResult<T> where T : class
     {
         public int ServicePageIndex { get; set; }
         /// <summary>
@@ -35,11 +37,6 @@ namespace SohoWeb.Entity
                 return TotalCount % PageSize == 0 ? TotalCount / PageSize : TotalCount / PageSize + 1;
             }
         }
-        /// <summary>
-        /// 当前页数据列表
-        /// </summary>
-        [DataMember]
-        public List<T> ResultList { get; set; }
         /// <summary>
         /// 当前页数据
         /// </summary>
