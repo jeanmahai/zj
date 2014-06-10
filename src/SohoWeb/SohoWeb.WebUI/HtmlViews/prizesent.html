@@ -3,7 +3,7 @@
         <div class="header">
             <div class="title">奖品发放记录</div>
             <div class="button-bar">
-                <a href="#/prizesent/insert">发放奖品</a><a href="javascript:void(0)" ng-click="delete();">删除所选记录</a>
+                <a href="#/prizesent/insert">发放奖品</a><!--<a href="javascript:void(0)" ng-click="delete();">删除所选记录</a>-->
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
         <table class="pure-table" style="width: 100%;">
             <thead>
                 <tr>
-                    <th></th>
+                    <!--<th></th>-->
                     <th>#</th>
                     <th>奖品编号</th>
                     <th>奖品名称</th>
@@ -61,15 +61,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="a in result">
-                    <td>
-                        <input type="checkbox" value="{{a.SysNo}}" ng-model="a.Checked" /></td>
-                    <th>{{a.SysNo}}</th>
-                    <th>{{a.GiftSysNo}}</th>
-                    <th>{{a.GiftName}}</th>
-                    <th>{{a.GrantCounts}}</th>
-                    <th>{{a.GrantDate}}</th>
-                    <th>{{a.GrantPerson}}</th>
-                    <th>{{a.GrantPlace}}</th>
+                   <!-- <td>
+                        <input type="checkbox" value="{{a.SysNo}}" ng-model="a.Checked" /></td>-->
+                    <td>{{a.SysNo}}</td>
+                    <td>{{a.GiftSysNo}}</td>
+                    <td>{{a.GiftName}}</td>
+                    <td>{{a.GrantCounts}}</td>
+                    <td>{{a.GrantDate}}</td>
+                    <td>{{a.GrantPerson}}</td>
+                    <td>{{a.GrantPlace}}</td>
                 </tr>
             </tbody>
         </table>
