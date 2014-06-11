@@ -65,6 +65,7 @@
     <Compile Include="EnumsHelper.cs" />
     <Compile Include="Enums\Common.cs" />
     <Compile Include="Enums\CustomerEnums.cs" />
+    <Compile Include="Enums\InfoEnums.cs" />
     <Compile Include="FilterBase.cs" />
     <Compile Include="Gifts\Gift.cs" />
     <Compile Include="Gifts\GiftQueryFilter.cs" />

@@ -10,6 +10,7 @@ using SohoWeb.Entity.InfoMgt;
 using SohoWeb.Entity.Enums;
 using SohoWeb.Entity.Statement;
 using SohoWeb.Service.Statement;
+using Soho.EmailAndSMS.Service.Entity;
 
 namespace SohoWeb.UnitTest
 {
@@ -66,6 +67,7 @@ namespace SohoWeb.UnitTest
         //
         #endregion
 
+        #region Gifts
         [TestMethod]
         public void TestMethodQueryGiftsGrantRecord()
         {
@@ -92,8 +94,9 @@ namespace SohoWeb.UnitTest
         {
             GiftsMgtService.Instance.DeleteGiftsGrantRecord(100002);
         }
+        #endregion
 
-
+        #region EmailAndSMS
         [TestMethod]
         public void TestMethodInsertEmailAndSMSTemplates()
         {
@@ -149,8 +152,19 @@ namespace SohoWeb.UnitTest
             };
             var data = InfoTemplatesMgtService.Instance.QueryEmailAndSMSTemplates(filter);
         }
+        [TestMethod]
+        public void TestMethodQueryMail()
+        {
+            EmailQueryFilter filter = new EmailQueryFilter() 
+            {
+                PageIndex = 1,
+                PageSize = 100
+            };
+            var data = EmailAndSMSService.Instance.QueryMail(filter);
+        }
+        #endregion
 
-
+        #region Statement
         [TestMethod]
         public void TestMethodCustomersLoseAnalyze()
         {
@@ -185,5 +199,6 @@ namespace SohoWeb.UnitTest
             };
             var data = StatementService.Instance.MonthSalesData(filter);
         }
+        #endregion
     }
 }

@@ -20,6 +20,11 @@ namespace SohoWeb.Entity.InfoMgt
         [DataMember]
         public string Category { get; set; }
         /// <summary>
+        /// 模板类型
+        /// </summary>
+        [DataMember]
+        public EmailAndSMSTemplateCategory TemplateCategory { get; set; }
+        /// <summary>
         /// 模板内容
         /// </summary>
         [DataMember]

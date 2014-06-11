@@ -62,7 +62,7 @@ namespace SohoWeb.Service.Customers
                 Soho.EmailAndSMS.Service.Entity.EmailEntity mailEntity = new Soho.EmailAndSMS.Service.Entity.EmailEntity();
                 mailEntity.Status = Soho.EmailAndSMS.Service.Entity.EmailStatus.AuditPassed;
                 mailEntity.IsBodyHtml = entity.IsHtmlMail;
-                mailEntity.InDate = DateTime.Now;
+                mailEntity.InDate = DateTime.Now.ToString();
                 mailEntity.EmailTitle = entity.MailTitle;
                 mailEntity.EmailPriority = System.Net.Mail.MailPriority.Normal;
                 mailEntity.EmailBody = entity.MailBody;
@@ -110,7 +110,7 @@ namespace SohoWeb.Service.Customers
             {
                 Soho.EmailAndSMS.Service.Entity.SMSEntity smsEntity = new Soho.EmailAndSMS.Service.Entity.SMSEntity();
                 smsEntity.Status = Soho.EmailAndSMS.Service.Entity.SMSStatus.AuditPassed;
-                smsEntity.InDate = DateTime.Now;
+                smsEntity.InDate = DateTime.Now.ToString();
                 smsEntity.SMSBody = entity.SMSBody;
                 List<Soho.EmailAndSMS.Service.Entity.SMSEntity> sendSMSList = new List<Soho.EmailAndSMS.Service.Entity.SMSEntity>();
 
@@ -152,7 +152,7 @@ namespace SohoWeb.Service.Customers
                 Soho.EmailAndSMS.Service.Entity.EmailEntity mailEntity = new Soho.EmailAndSMS.Service.Entity.EmailEntity();
                 mailEntity.Status = Soho.EmailAndSMS.Service.Entity.EmailStatus.AuditPassed;
                 mailEntity.IsBodyHtml = entity.IsHtmlMail;
-                mailEntity.InDate = DateTime.Now;
+                mailEntity.InDate = DateTime.Now.ToString();
                 mailEntity.EmailTitle = entity.MailTitle;
                 mailEntity.EmailPriority = System.Net.Mail.MailPriority.Normal;
                 mailEntity.EmailBody = entity.MailBody;
@@ -195,7 +195,7 @@ namespace SohoWeb.Service.Customers
             {
                 Soho.EmailAndSMS.Service.Entity.SMSEntity smsEntity = new Soho.EmailAndSMS.Service.Entity.SMSEntity();
                 smsEntity.Status = Soho.EmailAndSMS.Service.Entity.SMSStatus.AuditPassed;
-                smsEntity.InDate = DateTime.Now;
+                smsEntity.InDate = DateTime.Now.ToString();
                 smsEntity.SMSBody = entity.SMSBody;
                 List<Soho.EmailAndSMS.Service.Entity.SMSEntity> sendSMSList = new List<Soho.EmailAndSMS.Service.Entity.SMSEntity>();
 

@@ -18,12 +18,66 @@ namespace SohoWeb.WebUI.Controllers
     public class InfoMgtController : SSLController
     {
         /// <summary>
-        /// 获取电子邮件短息模板通用状态枚举列表
+        /// 获取电子邮件短信模板通用状态枚举列表
         /// </summary>
         /// <returns></returns>
         public ActionResult GetCommonStatusList()
         {
             var dataResult = EnumsHelper.GetKeyValuePairs<CommonStatus>(EnumAppendItemType.Select);
+            dataResult.RemoveAt(1);
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = dataResult,
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 获取电子邮件短信模板类型枚举列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetTemplateCategory()
+        {
+            var dataResult = EnumsHelper.GetKeyValuePairs<EmailAndSMSTemplateCategory>(EnumAppendItemType.Select);
+            dataResult.RemoveAt(1);
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = dataResult,
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 获取电子邮件状态枚举列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetEmailStatusList()
+        {
+            var dataResult = EnumsHelper.GetKeyValuePairs<EmailStatus>(EnumAppendItemType.Select);
+            dataResult.RemoveAt(1);
+            PortalResult result = new PortalResult()
+            {
+                Code = 0,
+                Success = true,
+                Data = dataResult,
+                Message = ""
+            };
+            return View(result);
+        }
+
+        /// <summary>
+        /// 获取短信状态枚举列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetSMSStatusList()
+        {
+            var dataResult = EnumsHelper.GetKeyValuePairs<SMSStatus>(EnumAppendItemType.Select);
             dataResult.RemoveAt(1);
             PortalResult result = new PortalResult()
             {
