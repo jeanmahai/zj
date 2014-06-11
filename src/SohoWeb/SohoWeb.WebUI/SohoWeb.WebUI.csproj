@@ -138,6 +138,7 @@
     <Content Include="HtmlViews\allot_fun.html" />
     <Content Include="HtmlViews\allot_role.html" />
     <Content Include="HtmlViews\email.html" />
+    <Content Include="HtmlViews\email_send.html" />
     <Content Include="HtmlViews\funs.html" />
     <Content Include="HtmlViews\funs_insert.html" />
     <Content Include="HtmlViews\funs_update.html" />

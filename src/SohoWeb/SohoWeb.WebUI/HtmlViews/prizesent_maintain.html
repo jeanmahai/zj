@@ -118,7 +118,7 @@
                     <tr ng-repeat="a in prizeResult">
                         <td>
                             <input type="radio" name="rbPrize" value="{{a.SysNo}}" ng-model="a.Checked" /></td>
-                        <td><a href="#/prize/{{a.SysNo}}">{{a.SysNo}}</a></td>
+                        <td>{{a.SysNo}}</td>
                         <td>{{a.GiftID}}</td>
                         <td>{{a.GiftName}}</td>
                         <td>{{a.MarketPrice}}</td>

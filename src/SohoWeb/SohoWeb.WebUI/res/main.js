@@ -52,8 +52,8 @@
         routeUrl: "/email/:action",
         templateUrl: function ($routeParams) {
             var action = $routeParams["action"];
-            if (new RegExp("insert", "i").test(action)) {
-                return "../HtmlViews/prizesent_maintain.html";
+            if (new RegExp("send", "i").test(action)) {
+                return "../HtmlViews/email_send.html";
             }
             else if (new RegExp("[0-9]+", "i").test(action)) {
                 return "../HtmlViews/prizesent_maintain.html";

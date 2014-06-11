@@ -26,6 +26,13 @@
             }
         };
 
+        $scope.email = { };
+        $scope.send = function () {
+            $http.post("",$scope.email).success(function (res) {
+                $N.info("发送成功");
+            });
+        };
+
         $http.post("/InfoMgt/GetCommonStatusList").success(function (res) {
             $scope.status = res;
         });
