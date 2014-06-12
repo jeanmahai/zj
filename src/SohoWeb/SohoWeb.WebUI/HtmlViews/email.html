@@ -41,7 +41,7 @@
                         </label>
                     </div>
                     <div class="pure-u-1-6">
-                        <button class="pure-button button-secondary" ng-click="select()">
+                        <button class="pure-button button-secondary" ng-click="query()">
                             查询 <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -55,7 +55,7 @@
             <thead>
                 <tr>
                     <th style="width: 60px;">#</th>
-                    <th style="width: 70px;">用户编号</th>
+                    <th style="width: 70px;">用户名</th>
                     <th style="width: 100px;">邮件标题</th>
                     <th style="width: 100px;">发送地址</th>
                     <th style="width: 60px;">状态</th>
@@ -64,14 +64,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="a in emails">
-                    <td style="width: 60px;">#</td>
-                    <td style="width: 70px;">用户编号</td>
-                    <td style="width: 100px;" onclick="showEmailDetail()"><a href="javascript:void(0)" ng-click="onSelect(a.SysNo)">邮件标题</a></td>
-                    <td style="width: 50px;">发送地址</td>
-                    <td style="width: 60px;">状态</td>
-                    <td style="width: 60px;">发送时间</td>
-                    <td>备注</td>
+                <tr ng-repeat="a in emailes">
+                    <td style="width: 60px;">{{a.SysNo}}</td>
+                    <td style="width: 70px;">{{a.ReceiveName}}</td>
+                    <td style="width: 100px;" onclick="showEmailDetail()"><a href="javascript:void(0)" ng-click="onSelect(a.SysNo)">{{a.EmailTitle}}</a></td>
+                    <td style="width: 50px;">{{a.ReceiveAddress}}</td>
+                    <td style="width: 60px;">{{a.Status}}</td>
+                    <td style="width: 60px;">{{a.SendTime}}</td>
+                    <td>{{a.Note}}</td>
                 </tr>
             </tbody>
         </table>

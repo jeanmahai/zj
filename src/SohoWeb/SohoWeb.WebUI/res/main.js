@@ -192,6 +192,8 @@
             "angular-date": "../res/lib/date",
             'jquery': '../res/lib/jquery.min',
 
+            "htmleditor": "../res/lib/nicEdit",
+
             'app': "../res/app"
             , "page_init": "../res/scripts/page_init"
         },

@@ -1,4 +1,4 @@
-﻿define(["app"],function (app) {
+﻿define(["app", "htmleditor"], function (app) {
     app.register.controller("EmailController", function ($scope, $http, $N) {
         $scope.filter = {};
         $scope.emailes = [];
@@ -10,7 +10,8 @@
                 PageIndex: $scope.pager.index
             });
             $http.post("/InfoMgt/QueryMail", $scope.filter).success(function (res) {
-                
+                $scope.emailes = res.ResultList;
+                $scope.pager.setTotal(res.TotalCount);
             });
         };
         $scope.pager = new N.Pager(1,10,function () {
@@ -28,7 +29,9 @@
 
         $scope.email = { };
         $scope.send = function () {
-            $http.post("",$scope.email).success(function (res) {
+            $scope.emailes.IsBodyHtml = true;
+            $scope.email.EmailBody = $(".nicEdit-main").html();
+            $http.post("/InfoMgt/InsertMail", $scope.email).success(function (res) {
                 $N.info("发送成功");
             });
         };
