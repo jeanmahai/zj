@@ -37,7 +37,7 @@
             });
         };
 
-        $http.post("/InfoMgt/GetCommonStatusList").success(function (res) {
+        $http.post("/InfoMgt/GetEmailStatusList").success(function (res) {
             $scope.status = res;
         });
     });

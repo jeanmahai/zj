@@ -235,6 +235,7 @@ namespace SohoWeb.WebMgt.Controllers
         public ActionResult InsertMail()
         {
             var requestVM = GetParams<EmailEntity>();
+            requestVM.Status=EmailStatus.AuditPassed;
 
             bool bResult = EmailAndSMSService.Instance.InsertMail(requestVM);
             PortalResult result = new PortalResult()
