@@ -236,12 +236,13 @@ namespace SohoWeb.WebMgt.Controllers
         {
             var requestVM = GetParams<EmailEntity>();
 
+            bool bResult = EmailAndSMSService.Instance.InsertMail(requestVM);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
-                Success = true,
-                Data = EmailAndSMSService.Instance.InsertMail(requestVM),
-                Message = ""
+                Success = bResult,
+                Data = bResult,
+                Message = bResult ? "" : "添加失败！"
             };
             return View(result);
         }
@@ -254,12 +255,13 @@ namespace SohoWeb.WebMgt.Controllers
         {
             var requestVM = GetParams<List<EmailEntity>>();
 
+            bool bResult = EmailAndSMSService.Instance.BatchInsertMail(requestVM);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
-                Success = true,
-                Data = EmailAndSMSService.Instance.BatchInsertMail(requestVM),
-                Message = ""
+                Success = bResult,
+                Data = bResult,
+                Message = bResult ? "" : "批量添加失败！"
             };
             return View(result);
         }
@@ -294,12 +296,13 @@ namespace SohoWeb.WebMgt.Controllers
         {
             var requestVM = GetParams<SMSEntity>();
 
+            bool bResult = EmailAndSMSService.Instance.InsertSMS(requestVM);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
-                Success = true,
-                Data = EmailAndSMSService.Instance.InsertSMS(requestVM),
-                Message = ""
+                Success = bResult,
+                Data = bResult,
+                Message = bResult ? "" : "添加失败！"
             };
             return View(result);
         }
@@ -312,12 +315,13 @@ namespace SohoWeb.WebMgt.Controllers
         {
             var requestVM = GetParams<List<SMSEntity>>();
 
+            bool bResult = EmailAndSMSService.Instance.BatchInsertSMS(requestVM);
             PortalResult result = new PortalResult()
             {
                 Code = 0,
-                Success = true,
-                Data = EmailAndSMSService.Instance.BatchInsertSMS(requestVM),
-                Message = ""
+                Success = bResult,
+                Data = bResult,
+                Message = bResult ? "" : "批量添加失败！"
             };
             return View(result);
         }
