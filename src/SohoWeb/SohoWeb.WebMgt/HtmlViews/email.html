@@ -1,0 +1,94 @@
+﻿<div class="pure-g">
+    <div class="pure-u-1">
+        <div class="header">
+            <div class="title">邮件查询</div>
+            <div class="button-bar">
+                <a href="#/email/send">发送邮件</a><!--<a href="javascript:void(0)" ng-click="delete();">删除所选奖品</a>-->
+            </div>
+        </div>
+    </div>
+    <div class="pure-u-1">
+        <form class="pure-form">
+            <fieldset>
+                <legend></legend>
+                <div class="pure-g" style="padding-left: 10px;">
+                    <div class="pure-u-1-6">
+                        <label>
+                            <span>用户编号:</span><input type="text" class="pure-input-2-3" ng-model="filter.UserSysNo" />
+                        </label>
+                    </div>
+                    <div class="pure-u-1-6">
+                        <label>
+                            <span>邮件地址:</span><input type="text" class="pure-input-2-3" ng-model="filter.EmailAddress" />
+                        </label>
+                    </div>
+
+                    <div class="pure-u-1-6">
+                        <label>
+                            <span>状态:</span><select class="pure-input-2-3" ng-model="filter.Status">
+                                <option ng-repeat="item in status" value="{{item.Key}}">{{item.Value}}</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="pure-u-1-6">
+                        <label>
+                            <span>开始时间:</span><input type="text" class="pure-input-2-3" ng-model="filter.BeginDate" ui-date />
+                        </label>
+                    </div>
+                    <div class="pure-u-1-6">
+                        <label>
+                            <span>结束时间:</span><input type="text" class="pure-input-2-3" ng-model="filter.EndDate" ui-date />
+                        </label>
+                    </div>
+                    <div class="pure-u-1-6">
+                        <button class="pure-button button-secondary" ng-click="select()">
+                            查询 <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+    <div class="pure-u-1">
+        <table class="pure-table" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th style="width: 60px;">#</th>
+                    <th style="width: 70px;">用户编号</th>
+                    <th style="width: 100px;">邮件标题</th>
+                    <th style="width: 100px;">发送地址</th>
+                    <th style="width: 60px;">状态</th>
+                    <th style="width: 60px;">发送时间</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="a in emails">
+                    <td style="width: 60px;">#</td>
+                    <td style="width: 70px;">用户编号</td>
+                    <td style="width: 100px;" onclick="showEmailDetail()"><a href="javascript:void(0)" ng-click="onSelect(a.SysNo)">邮件标题</a></td>
+                    <td style="width: 50px;">发送地址</td>
+                    <td style="width: 60px;">状态</td>
+                    <td style="width: 60px;">发送时间</td>
+                    <td>备注</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pure-paginator" my-pager ng-model="pager" first-load="true">
+            <li><a class="pure-button prev" href="#">&#171;</a></li>
+            <li ng-repeat="a in pager.pages"><a class="pure-button" ng-click="pager.goto(a)">{{a}}</a></li>
+            <li><a class="pure-button next" href="#">&#187;</a></li>
+        </ul>
+    </div>
+</div>
+<div id="dialogEmailDetail" title="邮件内容" style="display: none;">
+    {{selectedEmail.EmailBody}}
+</div>
+<script type="text/javascript">
+    function showEmailDetail() {
+        angular.element("#dialogEmailDetail").dialog({
+            modal:true
+        });
+    }
+</script>
